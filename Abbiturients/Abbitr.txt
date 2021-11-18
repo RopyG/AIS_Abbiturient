@@ -1,0 +1,2 @@
+ФИО: System.Windows.Forms.TextBox, Text: Бфтлвфы вывафы  апппа, Программа обучения: System.Windows.Forms.ComboBox, Items.Count: 4, Форма обучения: System.Windows.Forms.ComboBox, Items.Count: 3, Основа обучения: System.Windows.Forms.ComboBox, Items.Count: 2, Направление: 
+ФИО: Батлевы вып ываывп, Программа обучения: Бакалавриат, Форма обучения: Заочное, Основа обучения: Бюджетное, Направление: 

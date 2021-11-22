@@ -36,9 +36,11 @@ namespace Курсовая
         private void button5_Click(object sender, EventArgs e)
         {
             //label4.Text = sim.RandomFirstName();
-            
-            
-            label4.Text = po.ListOut();
+            sim.Start();
+            //var ds = new DBConnector();
+            //ds.Connect();
+
+            //label4.Text = po.ListOut();
         }
     }
 }

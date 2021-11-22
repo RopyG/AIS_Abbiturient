@@ -62,8 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abbiturient.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="GenerateAbbiturients.cs" />
+    <Compile Include="DBConnector.cs" />
+    <Compile Include="Generate\CommonDataContainer.cs" />
+    <Compile Include="Generate\GenerateAbbiturients.cs" />
     <Compile Include="Prog_ob.cs" />
     <Compile Include="RegistrF.cs">
       <SubType>Form</SubType>
@@ -124,6 +127,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database1.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database1_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

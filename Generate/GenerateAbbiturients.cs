@@ -38,7 +38,7 @@ namespace AIS
 
         public string GeneratePassword()
         {
-            string[] vowels = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            string[] vowels = { "2", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
             string password = "";
             password += vowels[_rnd.Next(vowels.Length)];
 

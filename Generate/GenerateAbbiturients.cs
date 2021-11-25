@@ -35,6 +35,26 @@ namespace AIS
             }
             return Name;
         }
+
+        public string GeneratePassword()
+        {
+
+            string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l", "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x", "a", "e", "i", "o", "u", "ae", "y" };
+            string[] vowels = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            string password = "";
+            password += consonants[_rnd.Next(consonants.Length)].ToUpper();
+            password += vowels[_rnd.Next(vowels.Length)];
+            //int b = 2; //b tells how many times a new letter has been added. It's 2 right now because the first two letters are already in the password.
+            for (int b = 2; b < _rnd.Next(5, 16); b++)
+            {
+                if (b % 2 == 0)
+                    password += consonants[_rnd.Next(consonants.Length)];
+                else
+                    password += vowels[_rnd.Next(vowels.Length)];
+            }
+            return password;
+        }
+
         public string lastName()
         {
             return "Bot";
@@ -81,6 +101,7 @@ namespace AIS
             {
                 ID = _idTracker,
                 Login = GenerateLogin(),
+                Password = GeneratePassword(),
                 FirstName = _firstName[_rnd.Next(0, _firstName.Count - 1)],
                 LastName = lastName(),
                 TrainingProgram = (string)po.SelectedItem,

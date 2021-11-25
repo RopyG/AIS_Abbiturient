@@ -18,8 +18,13 @@ namespace AIS
             InitializeComponent();
             foreach (var line in b.Abbiturients)
             {
-                listBox1.Items.Add($"{line.ID} {line.FirstName} {line.LastName} {line.TrainingProgram} {line.FormOfTraining} {line.Base} {line.Direction} {line.PhoneNumber}");
+                //listBox1.Items.Add($"{line.ID} {line.FirstName} {line.LastName} {line.TrainingProgram} {line.FormOfTraining} {line.Base} {line.Direction} {line.PhoneNumber}");
+                PasswordHash n = new PasswordHash(line.Password);
+                n.Verify(line.Password);
+
             }
+
+
         }
         private void ListForm_Load(object sender, EventArgs e)
         {

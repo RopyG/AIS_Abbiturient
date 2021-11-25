@@ -42,5 +42,15 @@ namespace Курсовая
 
             //label4.Text = po.ListOut();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            sim.Stop();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            new ListForm(sim.Output()).ShowDialog();
+        }
     }
 }

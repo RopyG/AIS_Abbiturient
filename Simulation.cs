@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using 
+
 namespace AIS
 {
     public class Simulation
@@ -19,7 +21,7 @@ namespace AIS
         Abbiturient abb = new Abbiturient();
         GenerateAbbiturients gen = new GenerateAbbiturients();
         CommonDataContainer _entities = new CommonDataContainer();
-
+        public ListBox box = new ListBox();
 
         private void GenerateClients(int amount, int delay)
         {
@@ -30,12 +32,11 @@ namespace AIS
                     if (Rng(config.newClientRate))
                     {
                         _entities.Abbiturients.Add(_Ga.GenerateNextAbbiturints());
-
                     }
                         
                     Thread.Sleep(rnd.Next(delay));
                 }
-
+                
             }
         }
         private bool Rng(double percentage)
@@ -54,6 +55,10 @@ namespace AIS
         public void Stop()
         {
             _isActive = false;
+        }
+        public CommonDataContainer Output( )
+        {
+            return _entities;
         }
     }
 }

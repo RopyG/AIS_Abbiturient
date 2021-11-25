@@ -17,7 +17,7 @@ namespace AIS
         private List<string> _phoneNumbers = new List<string>() {
         "82-93-94", "+7-923-848-49-20", "+2-828-394-83-83", "82-94-58", "83-58-28", "56-28-00"
         };
-        public string GenerateNickName(int len/*от 3 до 8*/)
+        public string GenerateLogin()
         {
             
             string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l", "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
@@ -26,7 +26,7 @@ namespace AIS
             Name += consonants[_rnd.Next(consonants.Length)].ToUpper();
             Name += vowels[_rnd.Next(vowels.Length)];
             //int b = 2; //b tells how many times a new letter has been added. It's 2 right now because the first two letters are already in the name.
-            for (int b = 2; b < len; b++)
+            for (int b = 2; b < _rnd.Next(3, 9); b++)
             {
                 if (b % 2 == 0)
                     Name += consonants[_rnd.Next(consonants.Length)];
@@ -37,32 +37,16 @@ namespace AIS
         }
         public string lastName()
         {
-            int i = _rnd.Next(1);
-            if (i == 0)
-                return "Ботов";
-            else
-                return "Ботовна";
+            return "Bot";
         }
         List<string> firstName ()
         {
             List<string> list = new List<string>();
             string b = "";
-            if (_rnd.Next(0, 1) == 0)
-                using (var filG = new StreamReader($@"F:\corse\Abbiturients\Abbitr.txt", System.Text.Encoding.Unicode))
-                    while ((b = filG.ReadLine()) != null)
-                        list.Add(b);
-            else
-                using (var filM = new StreamReader($@"F:\corse\Abbiturients\Abbitr.txt", System.Text.Encoding.Unicode))
-                    while ((b = filM.ReadLine()) != null)
-                        list.Add(b);
+            using (var filG = new StreamReader("FirstName.txt", System.Text.Encoding.Unicode))
+                while ((b = filG.ReadLine()) != null)
+                    list.Add(b);
             return list;
-        }
-        public string RandomFirstName()
-        {
-            List<string> list = new List<string>();
-            //_firstName();
-            string name = list[_rnd.Next(0, 202)];
-            return name;
         }
        
         public void GenerateProgrammOb(ComboBox cbpo, ComboBox cbfo, ComboBox cboo)
@@ -96,6 +80,7 @@ namespace AIS
             return new Abbiturient()
             {
                 ID = _idTracker,
+                Login = GenerateLogin(),
                 FirstName = _firstName[_rnd.Next(0, _firstName.Count - 1)],
                 LastName = lastName(),
                 TrainingProgram = (string)po.SelectedItem,

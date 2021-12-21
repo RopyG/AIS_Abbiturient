@@ -216,7 +216,7 @@ namespace AIS
 
         public void SelectAbbiturientCertainProg_Ob(ComboBox Prog_Ob)
         {
-            string sql = "Select Id, FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base from Clients WHERE (TrainingProgram = '"+ Prog_Ob.Text +"');";
+            string sql = $"Select Id, FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base from Clients WHERE TrainingProgram = '{Prog_Ob.Text}';";
             // Создать объект Command.
             SqlCommand cmd = new SqlCommand(sql, connection);
 

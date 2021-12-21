@@ -8,7 +8,7 @@ namespace AIS
     {
         public double newClientRate = 0.75;
         public int maxNewClients = 10;
-        public int maxNewClientDelay = 100;
+        public int maxNewClientDelay = 1000;
         public int maxPickedClients = 10;
         public int maxItemsAmountInCart = 10;
         public int checkoutInterval = 100;

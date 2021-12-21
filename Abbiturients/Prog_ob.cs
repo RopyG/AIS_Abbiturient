@@ -39,77 +39,175 @@ namespace AIS
 
         public class B : Prog_ob
         {
-            public void SetupB(ComboBox cb1, ComboBox cb2)
+            public B()
+            {
+                using (var filG = new StreamReader("Бакалавриат.txt", System.Text.Encoding.Unicode))
+                {
+                    listFo.Clear();
+                    while ((line = filG.ReadLine()) != null)
+                        listFo.Add(line);
+                }
+            }
+            public void SetupB(ComboBox cb1, ComboBox cb2, ComboBox cbDirection)
             {
                 cb1.Items.Add(p);
                 cb1.Items.Add(b);
                 cb2.Items.Add(o);
                 cb2.Items.Add(z);
                 cb2.Items.Add(oz);
+                
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
+            }
+            public void SetupB(ComboBox cbDirection)
+            {
+                
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
             }
 
-            public B()
-            {                using (var filG = new StreamReader("Бакалавриат.txt", System.Text.Encoding.Unicode))
-                    while ((line = filG.ReadLine()) != null)
-                        listFo.Add(b);
-            }
+            //public B()
+            //{ 
+            //    using (var filG = new StreamReader("Бакалавриат.txt", System.Text.Encoding.Unicode))
+            //    {
+            //        listFo.Clear();
+            //        while ((line = filG.ReadLine()) != null)
+            //            listFo.Add(b);
+            //    }
+            //}
 
         }
         public class M : Prog_ob
         {
-            
-            public void SetupM(ComboBox cb1, ComboBox cb2)
+            public M()
+            {
+                using (var filG = new StreamReader("Магистратура.txt", System.Text.Encoding.Unicode))
+                {
+                    listFo.Clear();
+                    while ((line = filG.ReadLine()) != null)
+                        listFo.Add(line);
+                }
+            }
+                
+            public void SetupM(ComboBox cb1, ComboBox cb2, ComboBox cbDirection)
             {
                 cb1.Items.Add(p);
                 cb1.Items.Add(b);
                 cb2.Items.Add(o);
                 cb2.Items.Add(z);
                 cb2.Items.Add(oz);
+                
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
+            }
+            public void SetupM(ComboBox cbDirection)
+            {
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
             }
 
-            public M()
-            {
-                using (var filG = new StreamReader("Магистратура.txt", System.Text.Encoding.Unicode))
-                    while ((line = filG.ReadLine()) != null)
-                        listFo.Add(b);
-            }
+            //public M()
+            //{
+            //    using (var filG = new StreamReader("Магистратура.txt", System.Text.Encoding.Unicode))
+            //    {
+            //        listFo.Clear();
+            //        while ((line = filG.ReadLine()) != null)
+            //            listFo.Add(b);
+            //    }
+            //}
         }
         public class C : Prog_ob
         {
-
-            public void SetupC(ComboBox cb1, ComboBox cb2)
+            public C()
+            {
+                using (var filG = new StreamReader("Среднее профессиональное образование.txt", System.Text.Encoding.Unicode))
+                {
+                    listFo.Clear();
+                    while ((line = filG.ReadLine()) != null)
+                        listFo.Add(line);
+                }
+            }
+            public void SetupC(ComboBox cb1, ComboBox cb2, ComboBox cbDirection)
             {
                 cb1.Items.Add(p);
                 cb1.Items.Add(b);
                 cb2.Items.Add(o);
                 cb2.Items.Add(z);
+                
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
+            }
+            public void SetupC(ComboBox cbDirection)
+            {
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
             }
 
-            public C()
-            {
-                using (var filG = new StreamReader("Среднее профессиональное образование.txt", System.Text.Encoding.Unicode))
-                    while ((line = filG.ReadLine()) != null)
-                        listFo.Add(b);
-            }
+            //public C()
+            //{
+            //    using (var filG = new StreamReader("Среднее профессиональное образование.txt", System.Text.Encoding.Unicode))
+            //    {
+            //        listFo.Clear();
+            //        while ((line = filG.ReadLine()) != null)
+            //            listFo.Add(b);
+            //    }
+            //}
 
         }
         public class A : Prog_ob
         {
-
-            public void SetupA(ComboBox cb1, ComboBox cb2)
+            public A()
+            {
+                using (var filG = new StreamReader("Аспирантура.txt", System.Text.Encoding.Unicode))
+                {
+                    listFo.Clear();
+                    while ((line = filG.ReadLine()) != null)
+                        listFo.Add(line);
+                }
+            }
+            public void SetupA(ComboBox cb1, ComboBox cb2, ComboBox cbDirection)
             {
                 cb1.Items.Add(p);
                 cb1.Items.Add(b);
                 cb2.Items.Add(o);
                 cb2.Items.Add(z);
+                
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
+                
+            }
+            public void SetupA(ComboBox cbDirection)
+            {
+                
+                foreach (var item in listFo)
+                {
+                    cbDirection.Items.Add(item);
+                }
             }
 
-            public A()
-            {
-                using (var filG = new StreamReader("Аспирантура.txt", System.Text.Encoding.Unicode))
-                    while ((line = filG.ReadLine()) != null)
-                        listFo.Add(b);
-            }
+            //public A()
+            //{
+            //    using (var filG = new StreamReader("Аспирантура.txt", System.Text.Encoding.Unicode))
+            //    {
+            //        listFo.Clear();
+            //        while ((line = filG.ReadLine()) != null)
+            //            listFo.Add(b);
+            //    }
+            //}
         }
         public void ProgObSetup(ComboBox cb3)
         {

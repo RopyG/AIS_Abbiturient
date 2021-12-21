@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AIS
 {
-    public partial class ListForm : Form
+    public partial class ListForm : System.Windows.Forms.Form
     {
         
         public ListForm(CommonDataContainer b)
@@ -19,8 +19,7 @@ namespace AIS
             foreach (var line in b.Abbiturients)
             {
                 //listBox1.Items.Add($"{line.ID} {line.FirstName} {line.LastName} {line.TrainingProgram} {line.FormOfTraining} {line.Base} {line.Direction} {line.PhoneNumber}");
-                PasswordHash n = new PasswordHash(line.Password);
-                n.Verify(line.Password);
+                
 
             }
 
@@ -35,6 +34,11 @@ namespace AIS
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

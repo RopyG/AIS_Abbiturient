@@ -13,7 +13,9 @@ namespace AIS
         //Configuration config;
         private Random _rnd = new Random();
         private int _idTracker = -1;
-        
+
+        string prValue;
+
         private List<string> _phoneNumbers = new List<string>() {
         "82-93-94", "+7-923-848-49-20", "+2-828-394-83-83", "82-94-58", "83-58-28", "56-28-00"
         };
@@ -80,22 +82,41 @@ namespace AIS
             return list;
         }
        
-        public void GenerateProgrammOb(ComboBox cbpo, ComboBox cbfo, ComboBox cboo)
+        public void GenerateProgrammOb(ComboBox cbpo, ComboBox cbfo, ComboBox cboo, ComboBox cbDirecction)
         {
 
             new Prog_ob().ProgObSetup(cbpo);
-            cbpo.SelectedIndex = _rnd.Next(0, 3);
+            cbpo.SelectedIndex = _rnd.Next(4);
             var setr = new SetRegistr();
-            setr.CorrectSelectedIndex(cboo, cbfo, cbpo);
+            setr.CorrectSelectedIndex(cboo, cbfo, cbpo, cbDirecction);
+            switch (cbpo.SelectedIndex)
+            {
+                case 0:
+                    prValue = cbDirecction.Items[_rnd.Next(cbDirecction.Items.Count-1)].ToString();
+                    break;
+                case 1:
+                    prValue = cbDirecction.Items[_rnd.Next(cbDirecction.Items.Count - 1)].ToString();
+                    break;
+                case 2:
+                    prValue = cbDirecction.Items[_rnd.Next(cbDirecction.Items.Count - 1)].ToString();
+                    break;
+                case 3:
+                    prValue = cbDirecction.Items[_rnd.Next(cbDirecction.Items.Count - 1)].ToString();
+                    break;
+                default:
+                    prValue = "Nope";
+                    break;
+            }
+            if (cbpo.SelectedIndex <= 1)
+                cbfo.SelectedIndex = _rnd.Next(3);
 
-            if (cbfo.SelectedIndex <= 1)
-                cbfo.SelectedIndex = _rnd.Next(0, 2);
             else
-                cbfo.SelectedIndex = _rnd.Next(0, 1);
+                cbfo.SelectedIndex = _rnd.Next(2);
 
-            cboo.SelectedIndex = _rnd.Next(0, 1);
+            cboo.SelectedIndex = _rnd.Next(2);
 
         }
+
         public GenerateAbbiturients(/*9Configuration config*/)
         {
 
@@ -104,20 +125,22 @@ namespace AIS
         {
             _idTracker++;
             List<string> _firstName = firstName();
+
             var po = new ComboBox();
             var fo = new ComboBox();
             var oo = new ComboBox();
-            GenerateProgrammOb(po, fo, oo);
+            var cbDirecction = new ComboBox();
+            GenerateProgrammOb(po, fo, oo, cbDirecction);
+
             return new Abbiturient()
             {
-                ID = _idTracker,
-                Login = GenerateLogin(),
-                Password = GeneratePassword(),
-                FirstName = _firstName[_rnd.Next(0, _firstName.Count - 1)],
+                //ID = _idTracker,
+                FirstName = GenerateLogin(),
                 LastName = lastName(),
                 TrainingProgram = (string)po.SelectedItem,
                 FormOfTraining = (string)fo.SelectedItem,
                 Base = (string)oo.SelectedItem,
+                Direction = prValue,
                 PhoneNumber = _phoneNumbers[_rnd.Next(0, _phoneNumbers.Count)]
 
             };

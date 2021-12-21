@@ -48,7 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -62,40 +64,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbbiturientsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AbbiturientsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Abbiturients\Abbiturient.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="DBConnector.cs" />
     <Compile Include="Generate\CommonDataContainer.cs" />
     <Compile Include="Generate\GenerateAbbiturients.cs" />
     <Compile Include="Abbiturients\PasswordHash.cs" />
-    <Compile Include="ListForm.cs">
+    <Compile Include="Abbiturients\Prog_ob.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectForms\DBForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListForm.Designer.cs">
+    <Compile Include="ProjectForms\DBForm.Designer.cs">
+      <DependentUpon>DBForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectForms\HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectForms\HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectForms\ListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectForms\ListForm.Designer.cs">
       <DependentUpon>ListForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abbiturients\Prog_ob.cs" />
-    <Compile Include="RegistrF.cs">
+    <Compile Include="ProjectForms\LoginF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>RegistrF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginF.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginF.Designer.cs">
+    <Compile Include="ProjectForms\LoginF.Designer.cs">
       <DependentUpon>LoginF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="ProjectForms\RegistrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectForms\RegistrationForm.Designer.cs">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectForms\SelectSortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectForms\SelectSortForm.Designer.cs">
+      <DependentUpon>SelectSortForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectForms\SimulationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectForms\SimulationForm.Designer.cs">
+      <DependentUpon>SimulationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetRegistr.cs" />
     <Compile Include="Simulation.cs" />
-    <EmbeddedResource Include="ListForm.resx">
+    <Compile Include="Split.cs" />
+    <EmbeddedResource Include="ProjectForms\DBForm.resx">
+      <DependentUpon>DBForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectForms\HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectForms\ListForm.resx">
       <DependentUpon>ListForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginF.resx">
+    <EmbeddedResource Include="ProjectForms\LoginF.resx">
       <DependentUpon>LoginF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectForms\RegistrationForm.resx">
+      <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectForms\SelectSortForm.resx">
+      <DependentUpon>SelectSortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectForms\SimulationForm.resx">
+      <DependentUpon>SimulationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -107,9 +154,38 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RegistrF.resx">
-      <DependentUpon>RegistrF.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="AbbiturientsDataSet.xsc">
+      <DependentUpon>AbbiturientsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AbbiturientsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AbbiturientsDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AbbiturientsDataSet.xss">
+      <DependentUpon>AbbiturientsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\Abbiturient.datasource" />
+    <None Include="Properties\DataSources\AIS.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\AIS.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\CommonDataContainer.datasource" />
+    <None Include="Properties\DataSources\Configuration.datasource" />
+    <None Include="Properties\DataSources\DBConnector.datasource" />
+    <None Include="Properties\DataSources\Form2.datasource" />
+    <None Include="Properties\DataSources\GenerateAbbiturients.datasource" />
+    <None Include="Properties\DataSources\ListForm.datasource" />
+    <None Include="Properties\DataSources\PasswordHash.datasource" />
+    <None Include="Properties\DataSources\Prog_ob.A.datasource" />
+    <None Include="Properties\DataSources\Prog_ob.B.datasource" />
+    <None Include="Properties\DataSources\Prog_ob.C.datasource" />
+    <None Include="Properties\DataSources\Prog_ob.datasource" />
+    <None Include="Properties\DataSources\Prog_ob.M.datasource" />
+    <None Include="Properties\DataSources\Prog_ob.Os.datasource" />
+    <None Include="Properties\DataSources\SetRegistr.datasource" />
+    <None Include="Properties\DataSources\Simulation.datasource" />
+    <None Include="Properties\DataSources\Курсовая.Form1.datasource" />
+    <None Include="Properties\DataSources\Курсовая.Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -137,12 +213,12 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database1.mdf">
+    <Content Include="Abbiturients.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Database1_log.ldf">
+    <Content Include="Abbiturients_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database1.mdf</DependentUpon>
+      <DependentUpon>Abbiturients.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

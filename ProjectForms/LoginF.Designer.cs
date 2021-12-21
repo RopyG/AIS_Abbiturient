@@ -1,7 +1,7 @@
 ﻿
-namespace Курсовая
+namespace AIS
 {
-    partial class Form1
+    partial class LoginF
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -48,14 +48,14 @@ namespace Курсовая
             // 
             this.textBox1.Location = new System.Drawing.Point(100, 106);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 20);
+            this.textBox1.Size = new System.Drawing.Size(156, 21);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(100, 162);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(156, 20);
+            this.textBox2.Size = new System.Drawing.Size(156, 21);
             this.textBox2.TabIndex = 1;
             // 
             // label1
@@ -72,7 +72,7 @@ namespace Курсовая
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(100, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Login";
             // 
@@ -84,6 +84,7 @@ namespace Курсовая
             this.button1.TabIndex = 4;
             this.button1.Text = "Enter";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -136,11 +137,13 @@ namespace Курсовая
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 312);
+            this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Cчет:";
+            this.label3.Visible = false;
+            this.label3.TextChanged += new System.EventHandler(this.label3_TextChanged);
             // 
             // label4
             // 
@@ -148,7 +151,7 @@ namespace Курсовая
             this.label4.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label4.Location = new System.Drawing.Point(2, 268);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 13);
+            this.label4.Size = new System.Drawing.Size(13, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "*";
             // 
@@ -158,7 +161,7 @@ namespace Курсовая
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 12;
-            this.button7.Text = "button7";
+            this.button7.Text = "ListForm";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 

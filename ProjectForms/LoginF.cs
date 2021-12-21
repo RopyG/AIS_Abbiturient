@@ -1,5 +1,4 @@
-﻿using AIS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,49 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using AIS.ProjectForms;
 
-namespace Курсовая
+namespace AIS
 {
-    public partial class Form1 : Form
+    public partial class LoginF : System.Windows.Forms.Form
     {
-        GenerateAbbiturients simGen = new GenerateAbbiturients();
-        Prog_ob.B po = new Prog_ob.B();
-        Simulation sim = new Simulation();
-        public Form1()
+        DBConnector dbc = new DBConnector();
+        public LoginF()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //dbc.Connect(this);
         }
 
         public void button2_Click(object sender, EventArgs e)
         {
-            Form2 fr = new Form2();
+            RegistrationForm fr = new RegistrationForm();
             fr.ShowDialog();
             
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //label4.Text = sim.RandomFirstName();
-            sim.Start();
-            //var ds = new DBConnector();
-            //ds.Connect();
-
-            //label4.Text = po.ListOut();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            sim.Stop();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            new ListForm(sim.Output()).ShowDialog();
+            //new ListForm(sim.Output()).ShowDialog();
+        }
+
+        private void label3_TextChanged(object sender, EventArgs e)
+        {
+            //dbc.InsertAbbiturient(label3.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HomeForm dbf = new HomeForm();
+            dbf.ShowDialog();
         }
     }
 }

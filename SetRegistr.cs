@@ -12,7 +12,7 @@ namespace AIS
 {
     public class SetRegistr
     {
-        
+
         public void SetYears(ComboBox cb)
         {
             var dt = DateTime.Today.Year;
@@ -26,7 +26,7 @@ namespace AIS
             try
             {
                 int year = Convert.ToInt32(cb.SelectedItem);
-                int mounth = Convert.ToInt32( mm.SelectedItem);
+                int mounth = Convert.ToInt32(mm.SelectedItem);
                 int day = Convert.ToInt32(dd.SelectedItem);
                 trutime = new DateTime(year, mounth, day);
                 return trutime;
@@ -37,61 +37,125 @@ namespace AIS
             }
         }
 
-        public void ParseToFile(DateTime date, TextBox fio, ComboBox po, ComboBox fo, ComboBox oo)
-        {
-            
-            string path = $@"F:\corse\Abbiturients\Abbitr.txt";
-            if (date == new DateTime())
-            {
-                MessageBox.Show("Неверная дата", "Ожибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            using(var ds = new StreamWriter(path, true))
-            {
 
-                ds.WriteLine($@"ФИО: {fio.Text}, Программа обучения: {po.SelectedItem}, Форма обучения: {fo.SelectedItem}, Основа обучения: {oo.SelectedItem}, Направление: ");
-            }
-        }
 
-        public void CorrectSelectedIndex(ComboBox cb1, ComboBox cb2, ComboBox cb3)
+        public void CorrectSelectedIndex(ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cbDirection)
         {
             if (cb3.SelectedIndex == 0)
             {
                 cb1.Items.Clear();
                 cb2.Items.Clear();
-                cb2.Enabled = true;
+                cbDirection.Items.Clear();
                 cb1.Enabled = true;
-                new Prog_ob.B().SetupB(cb1, cb2);
-                
+                cb2.Enabled = true;
+                cbDirection.Enabled = true;
+                new Prog_ob.B().SetupB(cb1, cb2, cbDirection);
+
             }
-            
+
             if (cb3.SelectedIndex == 1)
             {
                 cb1.Items.Clear();
                 cb2.Items.Clear();
-                cb2.Enabled = true;
+                cbDirection.Items.Clear();
                 cb1.Enabled = true;
-                new Prog_ob.M().SetupM(cb1, cb2);
+                cb2.Enabled = true;
+                cbDirection.Enabled = true;
+                new Prog_ob.M().SetupM(cb1, cb2, cbDirection);
             }
-            
+
             if (cb3.SelectedIndex == 2)
             {
                 cb1.Items.Clear();
                 cb2.Items.Clear();
-                cb2.Enabled = true;
+                cbDirection.Items.Clear();
                 cb1.Enabled = true;
-                new Prog_ob.C().SetupC(cb1, cb2);
+                cb2.Enabled = true;
+                cbDirection.Enabled = true;
+                new Prog_ob.C().SetupC(cb1, cb2, cbDirection);
             }
-            
+
             if (cb3.SelectedIndex == 3)
             {
                 cb1.Items.Clear();
                 cb2.Items.Clear();
-                cb2.Enabled = true;
+                cbDirection.Items.Clear();
                 cb1.Enabled = true;
-                new Prog_ob.A().SetupA(cb1, cb2);
+                cb2.Enabled = true;
+                cbDirection.Enabled = true;
+                new Prog_ob.A().SetupA(cb1, cb2, cbDirection);
             }
-            
+
+        }
+
+        public void CorrectindexFor_SortForm(ComboBox progOb, ComboBox direction, CheckBox allProgOb, CheckBox allDirection)
+        {
+            switch (progOb.SelectedIndex)
+            {
+                case 0:
+                    direction.Items.Clear();
+                    direction.Enabled = true;
+                    allDirection.Enabled = true;
+                    new Prog_ob.B().SetupB(direction);
+                    break;
+                case 1:
+                    direction.Items.Clear();
+                    direction.Enabled = true;
+                    allDirection.Enabled = true;
+                    new Prog_ob.M().SetupM(direction);
+                    break;
+                case 2:
+                    direction.Items.Clear();
+                    direction.Enabled = true;
+                    allDirection.Enabled = true;
+                    new Prog_ob.C().SetupC(direction);
+                    break;
+                case 3:
+                    direction.Items.Clear();
+                    direction.Enabled = true;
+                    allDirection.Enabled = true;
+                    new Prog_ob.A().SetupA(direction);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        public void CorrectProgObheckedFor_SortForm(ComboBox progOb, ComboBox direction, CheckBox allProgOb, CheckBox allDirection)
+        {
+            switch (allProgOb.Checked)
+            {
+                case true:
+                    progOb.Text = null;
+                    direction.Text = null;
+                    progOb.Enabled = false;
+                    direction.Enabled = false;
+                    allDirection.Enabled = false;
+
+                    break;
+                case false:
+                    progOb.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void CorrectDirectionCheckedFor_SortForm(ComboBox direction, CheckBox allDirection)
+        { 
+            switch (allDirection.Checked)
+            {
+                case true:
+                    direction.Text = null;
+                    direction.Enabled = false;
+
+                    break;
+                case false:
+                    direction.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

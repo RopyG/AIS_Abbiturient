@@ -5,25 +5,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
 using System.Threading;
 
 namespace AIS
 {
     public class Simulation
     {
-        CommonDataContainer _entitity = new CommonDataContainer();
         GenerateAbbiturients _Ga = new GenerateAbbiturients(); 
-        private Random rnd = new Random();
-        //Random rnd = new Random();
+        Random rnd = new Random();
         Configuration config = new Configuration();
         bool _isActive = false;
-        Abbiturient abb = new Abbiturient();
-        GenerateAbbiturients gen = new GenerateAbbiturients();
+        //CommonDataContainer cdc = new CommonDataContainer();
+
+        //List<Abbiturient> Abbiturients = new List<Abbiturient>();
+        public Label lb = new Label();
+
+        public ListBox action = new ListBox();
+        DBConnector dbc = new DBConnector();
         CommonDataContainer _entities = new CommonDataContainer();
-        public ListBox box = new ListBox();
+
+
+        public Simulation (Label l)
+        {
+            lb = l;
+        }
+        public Simulation()
+        {
+
+        }
 
         private void GenerateClients(int amount, int delay)
         {
+            
             while (_isActive)
             {
                 for (int i = 0; i < amount; i++)
@@ -31,13 +46,15 @@ namespace AIS
                     if (Rng(config.newClientRate))
                     {
                         _entities.Abbiturients.Add(_Ga.GenerateNextAbbiturints());
+                        //dbc.FReach(_entities);
                     }
-                        
                     Thread.Sleep(rnd.Next(delay));
                 }
-                
             }
+                dbc.FReach(_entities);
+                _entities.Abbiturients.Clear();
         }
+
         private bool Rng(double percentage)
         {
             return  rnd.NextDouble() < percentage;
@@ -48,13 +65,13 @@ namespace AIS
             if (!_isActive)
                 _isActive = true;
             Task.Run(() => GenerateClients(config.maxNewClients, config.maxNewClientDelay));
-            //Task.Run(() =>);
-
         }
+
         public void Stop()
         {
             _isActive = false;
         }
+
         public CommonDataContainer Output( )
         {
             return _entities;

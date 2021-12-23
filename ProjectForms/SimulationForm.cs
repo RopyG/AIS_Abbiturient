@@ -22,7 +22,7 @@ namespace AIS
 
         private void SimulationForm_Load(object sender, EventArgs e)
         {
-            sim = new Simulation();
+            sim = new Simulation(label2);
             //dbc.Connect();
         }
 

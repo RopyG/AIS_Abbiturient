@@ -50,6 +50,7 @@ namespace AIS
                     }
                     Thread.Sleep(rnd.Next(delay));
                 }
+                lb.Invoke(new Action(() => lb.Text = (Convert.ToInt32(lb.Text) + _entities.Abbiturients.Count).ToString()));
             }
                 dbc.FReach(_entities);
                 _entities.Abbiturients.Clear();

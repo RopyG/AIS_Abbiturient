@@ -45,31 +45,6 @@ namespace AIS
             //dataGridView1.DataSource = abbiturientsBindingSource.DataSource;
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-            //dataGridView1.Rows.Insert(0, textBox1.Text);
-            //dataGridView1.Rows.Insert(1, textBox2.Text);
-            //dataGridView1.Rows.Insert(2, textBox3.Text);
-            //dataGridView1.Rows.Insert(3, textBox4.Text);
-            dbc.InsertAbbiturient(/*Convert.ToInt32(idTextBox.Text),*/ firstNameTextBox.Text, lastNameTextBox.Text, trainingProgramTextBox.Text, formOfTrainingTextBox.Text, baseTextBox.Text, directionTextBox.Text, phoneNumberTextBox.Text);
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Update();
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        { 
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             new SelectSortForm().ShowDialog();

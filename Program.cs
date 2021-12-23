@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Курсовая
+namespace AIS
 {
     
     static class Program
@@ -17,7 +17,9 @@ namespace Курсовая
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AIS.LoginF());
+            LoginF form = new LoginF();
+            form.Show();
+            Application.Run();
         }
     }
 }

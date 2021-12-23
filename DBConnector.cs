@@ -40,7 +40,7 @@ namespace AIS
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 #endif
         }
-        public void CreateAccount(string username, string password)
+        public void CreateAccount(string login, string password)
         {
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
@@ -54,15 +54,60 @@ namespace AIS
 
             string savedPasswordHash = Convert.ToBase64String(hashBytes);
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Database1.mdf;Integrated Security=True";
+            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Abbiturients.mdf;Integrated Security=True";
             conn.Open();
-            var command = new SqlCommand($"INSERT INTO Accounts (username, password) VALUES (@username, @password);", conn);
-            command.Parameters.Add("@username", SqlDbType.NChar);
-            command.Parameters["@username"].Value = username;
-            command.Parameters.Add("@password", SqlDbType.VarChar);
+            var command = new SqlCommand($"INSERT INTO Accounts (Login, Password) VALUES (@login, @password);", connection);
+            command.Parameters.Add("@login", SqlDbType.NChar);
+            command.Parameters["@login"].Value = login;
+            command.Parameters.Add("@password", SqlDbType.NVarChar);
             command.Parameters["@password"].Value = savedPasswordHash;
             command.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public bool Login(string login, string password)
+        {
+            if (login.Length < 1 || password.Length < 1)
+                return false;
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Abbiturients.mdf;Integrated Security=True";
+            conn.Open();
+            SqlCommand command = new SqlCommand("Select Password FROM Accounts Where login = @login", connection);
+            command.Parameters.Add("@login", SqlDbType.NChar);
+            command.Parameters["@login"].Value = login;
+            string savedPasswordHash;
+            /* Fetch the stored value */
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                // if the result set is not NULL
+                if (!reader.HasRows)
+                {
+                    return false;
+                }
+                else
+                {
+                    reader.Read();
+                    savedPasswordHash = reader.GetString(0);
+                }
+            }
+            /* Extract the bytes */
+            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            /* Get the salt */
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            /* Compute the hash on the password the user entered */
+            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            /* Compare the results */
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                {
+                    MessageBox.Show("Incorrect login or password", "Authentication has failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    conn.Close();
+                    return false;
+                }
+            conn.Close();
+            return true;
         }
 
 
@@ -70,9 +115,9 @@ namespace AIS
         {
             connection.Close();
         }
-        public void Connect(System.Windows.Forms.Form form)
+        public void Connect(System.Windows.Forms.Form formm)
         {
-            //form.FormClosing += Disconnect;
+            formm.FormClosing += Disconnect;
             connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Abbiturients.mdf;Integrated Security=True");
             if (IsAvailable())
             {
@@ -94,10 +139,59 @@ namespace AIS
 
             return true;
         }
-        public void InsertAbbiturient(string firstName, string lastName, string trainingProgram, string formOfTraining, string _base, string direction, string phoneNumber)
+
+        public bool IsAccountValid(string username, string password, string role)
         {
-            var command = new SqlCommand("INSERT INTO CLIENTS (FirstName, LastName, TrainingProgram, FormOfTraining, Base, Direction, PhoneNumber) " +
-                "VALUES (@firstName, @lastName, @trainingProgram, @formOfTraining, @_base, @direction, @phoneNumber);", connection);
+            SqlConnection securityConnection = new SqlConnection();
+            string sql_command = "SELECT count(*) FROM Accounts WHERE name = @username;";
+            bool SqlUserExists;
+
+            SqlCommand command = new SqlCommand(sql_command, connection);
+            command.Parameters.Add("@username", SqlDbType.NChar);
+            command.Parameters["@username"].Value = username;
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if (reader.GetValue(0).ToString() == "1")
+                    {
+                        SqlUserExists = true;
+                    }
+                }
+            }
+
+            SqlUserExists = false;
+
+            if (SqlUserExists)
+            {
+                SqlConnection connection = new SqlConnection();
+                connection.ConnectionString = "Data Source=.;" + "User id=" + username + ";Password=" + password + ";";
+                try
+                {
+                    connection.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("Data Base is unavailable", "DB connection failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    connection.Dispose();
+                    return false;
+                }
+
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+
+        public void InsertAbbiturient(string firstName, string lastName, string trainingProgram, string formOfTraining, string _base, string direction, string phoneNumber, string scores)
+        {
+            var command = new SqlCommand("INSERT INTO CLIENTS (FirstName, LastName, TrainingProgram, FormOfTraining, Base, Direction, PhoneNumber, Scores) " +
+                "VALUES (@firstName, @lastName, @trainingProgram, @formOfTraining, @_base, @direction, @phoneNumber, @scores);", connection);
 
             //command.Parameters.Add("@login", SqlDbType.NChar);
             //command.Parameters["@login"].Value = Id;
@@ -122,14 +216,17 @@ namespace AIS
 
             command.Parameters.Add("@phoneNumber", SqlDbType.NChar);
             command.Parameters["@phoneNumber"].Value = phoneNumber;
+
+            command.Parameters.Add("@scores", SqlDbType.NChar);
+            command.Parameters["@scores"].Value = scores;
             command.ExecuteNonQuery();
         }
 
         public void InsertAbbiturient(Abbiturient abb)
         {
             Connect(new SimulationForm());
-            var command = new SqlCommand("INSERT INTO CLIENTS (FirstName, LastName, TrainingProgram, FormOfTraining, Base, Direction, PhoneNumber) " +
-                "VALUES (@firstName, @lastName, @trainingProgram, @formOfTraining, @_base, @direction, @phoneNumber);", connection);
+            var command = new SqlCommand("INSERT INTO CLIENTS (FirstName, LastName, TrainingProgram, FormOfTraining, Base, Direction, PhoneNumber, Scores) " +
+                "VALUES (@firstName, @lastName, @trainingProgram, @formOfTraining, @_base, @direction, @phoneNumber, @scores);", connection);
 
             //command.Parameters.Add("@login", SqlDbType.NChar);
             //command.Parameters["@login"].Value = login;
@@ -154,6 +251,9 @@ namespace AIS
 
             command.Parameters.Add("@phoneNumber", SqlDbType.NChar);
             command.Parameters["@phoneNumber"].Value = abb.PhoneNumber;
+
+            command.Parameters.Add("@scores", SqlDbType.NChar);
+            command.Parameters["@scores"].Value = abb.Scores;
             command.ExecuteNonQuery();
         }
         public void FReach ( CommonDataContainer labb)
@@ -172,7 +272,8 @@ namespace AIS
 
             // Создать объект Command.
             SqlCommand cmd = new SqlCommand();
-
+            if (!Directory.Exists("C:\\Doc"))
+                Directory.CreateDirectory("C:\\Doc");
             // Сочетать Command с Connection.
             cmd.Connection = connection;
             cmd.CommandText = sql;
@@ -195,7 +296,8 @@ namespace AIS
                             string trainingprogram = reader.GetString(3);
                             int empNameIndex = reader.GetOrdinal("FormOfTraining");
                             string trainingofform = reader.GetString(empNameIndex);
-                            string direction = reader.GetString(6);
+                            int dir = reader.GetOrdinal("Direction");
+                            string direction = reader.GetString(dir);
                             int mngId = reader.GetOrdinal("Base");
                             string _base = reader.GetString(mngId); 
 
@@ -216,10 +318,11 @@ namespace AIS
 
         public void SelectAbbiturientCertainProg_Ob(ComboBox Prog_Ob)
         {
-            string sql = $"Select Id, FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base from Clients WHERE TrainingProgram = '{Prog_Ob.Text}';";
+            string sql = $"Select Id, FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base from Clients WHERE TrainingProgram = N'{Prog_Ob.Text}';";
             // Создать объект Command.
             SqlCommand cmd = new SqlCommand(sql, connection);
-
+            if (!Directory.Exists("C:\\Doc"))
+                Directory.CreateDirectory("C:\\Doc");
             // Сочетать Command с Connection.
             //cmd.Connection = connection;
             //cmd.CommandText = sql//$"Select FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base from Clients where TrainingProgram='{Prog_Ob.Text.ToString()}'";
@@ -248,9 +351,11 @@ namespace AIS
                             string firstname = reader.GetString(1);
                             string lastname = reader.GetString(2);
                             //string trainingprogram = reader.GetString(3);
-                            int empNameIndex = reader.GetOrdinal("TrainingOfForm");// 2
+                            int empNameIndex = reader.GetOrdinal("FormOfTraining");// 2
                             string trainingofform = reader.GetString(empNameIndex);
-                            string direction = reader.GetString(6);
+
+                            int dir = reader.GetOrdinal("Direction");
+                            string direction = reader.GetString(dir);
                             // Индекс столбца Mng_Id в команде SQL.
                             int mngId = reader.GetOrdinal("Base");
                             string _base = reader.GetString(mngId); ;
@@ -272,64 +377,22 @@ namespace AIS
         }
 
 
-        //public void SelectAbbiturientCertainDirection(ComboBox Direction, ComboBox Prog_Ob)
-        //{
-        //    string sql = $"Select Id, FirstName, LastName, FormOfTraining, Base from Clients where TrainingProgram = {Direction.SelectedItem} ";
-        //    // Создать объект Command.
-        //    SqlCommand cmd = new SqlCommand();
-
-        //    // Сочетать Command с Connection.
-        //    cmd.Connection = connection;
-        //    cmd.CommandText = sql;
-        //    int count = 0;
-
-        //    using (DbDataReader reader = cmd.ExecuteReader())
-        //    {
-        //        if (reader.HasRows)
-        //        {
-        //            //(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        //            //($"Абитуриенты выбравшие программу обучения: {Prog_Ob.SelectedItem}");
-        //            //(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        //            while (reader.Read())
-        //            {
-        //                // Индекс столбца Emp_ID в команде SQL.
-        //                int id = reader.GetOrdinal("Id"); // 0
-
-
-        //                //long empId = Convert.ToInt64(reader.GetValue(0));
-
-        //                // Столбец Emp_No имеет index = 1.
-        //                string firstname = reader.GetString(1);
-        //                string lastname = reader.GetString(2);
-        //                //string trainingprogram = reader.GetString(3);
-        //                int empNameIndex = reader.GetOrdinal("TrainingOfForm");// 2
-        //                string trainingofform = reader.GetString(empNameIndex);
-        //                string direction = reader.GetString(6);
-        //                // Индекс столбца Mng_Id в команде SQL.
-        //                int mngId = reader.GetOrdinal("Base");
-        //                string _base = reader.GetString(mngId); ;
-        //                //long? mngId = null;
-
-        //                ParseToFileCertainDirection(count, id, firstname, lastname, Prog_Ob, trainingofform, Direction, _base);
-        //            }
-        //        }
-        //    }
-        //}
-
+        
 
         public void SelectAbbiturientCertainProg_ObAndCertainDirection(ComboBox Prog_Ob, ComboBox Direction)
         {
-            string sql = "Select Id, FirstName, LastName, TrainingProgram, FormOfTraining, Base, Direction from Clients where TrainingProgram='" + Prog_Ob.SelectedItem + "' and Direction='" + Direction.SelectedItem + "'";
+            string sql = "Select Id, FirstName, LastName, TrainingProgram, FormOfTraining, Base, Direction from Clients where TrainingProgram=N'" + Prog_Ob.SelectedItem + "' and Direction=N'" + Direction.SelectedItem + "'";
             // Создать объект Command.
             SqlCommand cmd = new SqlCommand();
-
+            if (!Directory.Exists("C:\\Doc"))
+                Directory.CreateDirectory("C:\\Doc");
             // Сочетать Command с Connection.
             cmd.Connection = connection;
             cmd.CommandText = sql;
             int count = 0;
             string date = DateTime.Now.ToString();
             date = date.Remove(10);
-            string path = $"C:\\Doc\\Конкретная программа/направление({date}).txt";
+            string path = $"C:\\Doc\\Конкретная программа;направление({date}).txt";
 
             using (DbDataReader reader = cmd.ExecuteReader())
             {
@@ -352,7 +415,7 @@ namespace AIS
                             string firstname = reader.GetString(1);
                             string lastname = reader.GetString(2);
                             //string trainingprogram = reader.GetString(3);
-                            int empNameIndex = reader.GetOrdinal("TrainingOfForm");// 2
+                            int empNameIndex = reader.GetOrdinal("FormOfTraining");// 2
                             string trainingofform = reader.GetString(empNameIndex);
                             string direction = reader.GetString(6);
                             // Индекс столбца Mng_Id в команде SQL.
@@ -373,5 +436,68 @@ namespace AIS
                 }
             }
         }
+        public void SelectAbbiturientEnrollment(ComboBox Prog_Ob, ComboBox Direction, TextBox abitrValues)
+        {
+            string sql = $"Select TOP ({abitrValues.Text})Id, FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base, Scores from Clients WHERE TrainingProgram = N'{Prog_Ob.Text}' and Direction = N'{Direction.Text}' ORDER BY Scores DESC;";
+            // Создать объект Command.
+            SqlCommand cmd = new SqlCommand(sql, connection);
+            if (!Directory.Exists("C:\\Doc"))
+                Directory.CreateDirectory("C:\\Doc");
+            // Сочетать Command с Connection.
+            //cmd.Connection = connection;
+            //cmd.CommandText = sql//$"Select FirstName, LastName, TrainingProgram, FormOfTraining, Direction, Base from Clients where TrainingProgram='{Prog_Ob.Text.ToString()}'";
+            int count = 0;
+            string date = DateTime.Now.ToString();
+            date = date.Remove(10);
+            string path = $"C:\\Doc\\Зачисление({date}).txt";
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    using (var ds = new StreamWriter(path))
+                    {
+                        ds.WriteLine($"Программма:{Prog_Ob.Text}");
+                        ds.WriteLine($"Направление:{Direction.Text}");
+                        ds.WriteLine($"Дата создания:{date}");
+                        while (reader.Read())
+                        {
+                            // Индекс столбца Emp_ID в команде SQL.
+                            int id = Convert.ToInt32(reader.GetValue(0));
+
+
+                            //long empId = Convert.ToInt64(reader.GetValue(0));
+
+                            // Столбец Emp_No имеет index = 1.
+                            string firstname = reader.GetString(1);
+                            string lastname = reader.GetString(2);
+                            //string trainingprogram = reader.GetString(3);
+                            int empNameIndex = reader.GetOrdinal("FormOfTraining");// 2
+                            string trainingofform = reader.GetString(empNameIndex);
+                            
+                            //int dir = reader.GetOrdinal("Direction");
+                            //string direction = reader.GetString(dir);
+                            // Индекс столбца Mng_Id в команде SQL.
+                            int mngId = reader.GetOrdinal("Base");
+                            string _base = reader.GetString(mngId); ;
+                            int score = Convert.ToInt32(reader.GetValue(7)); 
+                            //long? mngId = null;
+                            ds.WriteLine($"-№{count += 1}------------------");
+                            ds.WriteLine("ID:" + id);
+                            ds.WriteLine("Имя:" + firstname);
+                            ds.WriteLine("Фамилия:" + lastname);
+                            //ds.WriteLine("Программа обучения:" + trainingprogram);
+                            ds.WriteLine("Форма обучения:" + trainingofform);
+                            //ds.WriteLine("Направление:" + direction);
+                            ds.WriteLine("Основа:" + _base);
+                            ds.WriteLine("Баллы:" + score);
+
+                        }
+                    }
+
+                }
+            }
+        }
+
     }
 }

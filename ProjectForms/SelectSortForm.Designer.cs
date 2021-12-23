@@ -36,6 +36,9 @@ namespace AIS.ProjectForms
             this.directionLabel = new System.Windows.Forms.Label();
             this.allProgObChBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.enrollmentChBox = new System.Windows.Forms.CheckBox();
+            this.abiturValueBox = new System.Windows.Forms.TextBox();
+            this.abiturientsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // allDirectionChBox
@@ -105,7 +108,7 @@ namespace AIS.ProjectForms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(380, 263);
+            this.button1.Location = new System.Drawing.Point(443, 267);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 49);
             this.button1.TabIndex = 7;
@@ -113,11 +116,47 @@ namespace AIS.ProjectForms
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // enrollmentChBox
+            // 
+            this.enrollmentChBox.AutoSize = true;
+            this.enrollmentChBox.Location = new System.Drawing.Point(443, 39);
+            this.enrollmentChBox.Name = "enrollmentChBox";
+            this.enrollmentChBox.Size = new System.Drawing.Size(102, 17);
+            this.enrollmentChBox.TabIndex = 8;
+            this.enrollmentChBox.Text = "На зачисление";
+            this.enrollmentChBox.UseVisualStyleBackColor = true;
+            this.enrollmentChBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // abiturValueBox
+            // 
+            this.abiturValueBox.Enabled = false;
+            this.abiturValueBox.Location = new System.Drawing.Point(443, 62);
+            this.abiturValueBox.Name = "abiturValueBox";
+            this.abiturValueBox.Size = new System.Drawing.Size(26, 20);
+            this.abiturValueBox.TabIndex = 9;
+            this.abiturValueBox.Text = "30";
+            this.abiturValueBox.TextChanged += new System.EventHandler(this.adirueValueBox_TextChanged);
+            this.abiturValueBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.adirueValueBox_KeyPress);
+            // 
+            // abiturientsLabel
+            // 
+            this.abiturientsLabel.AutoSize = true;
+            this.abiturientsLabel.Enabled = false;
+            this.abiturientsLabel.Location = new System.Drawing.Point(469, 65);
+            this.abiturientsLabel.Name = "abiturientsLabel";
+            this.abiturientsLabel.Size = new System.Drawing.Size(76, 13);
+            this.abiturientsLabel.TabIndex = 10;
+            this.abiturientsLabel.Text = "абитуриентов";
+            this.abiturientsLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
             // SelectSortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 403);
+            this.Controls.Add(this.abiturientsLabel);
+            this.Controls.Add(this.abiturValueBox);
+            this.Controls.Add(this.enrollmentChBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.allProgObChBox);
             this.Controls.Add(this.directionLabel);
@@ -141,5 +180,8 @@ namespace AIS.ProjectForms
         private System.Windows.Forms.Label directionLabel;
         private System.Windows.Forms.CheckBox allProgObChBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox enrollmentChBox;
+        private System.Windows.Forms.TextBox abiturValueBox;
+        private System.Windows.Forms.Label abiturientsLabel;
     }
 }

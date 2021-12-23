@@ -53,6 +53,7 @@ namespace AIS.ProjectForms
             this.label11 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.phoneBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -281,11 +282,11 @@ namespace AIS.ProjectForms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(282, 54);
+            this.label5.Location = new System.Drawing.Point(279, 93);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 18;
-            this.label5.Text = "ДД:";
+            this.label5.Text = "Баллы:";
             this.label5.Visible = false;
             // 
             // label6
@@ -374,6 +375,7 @@ namespace AIS.ProjectForms
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBox2);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.phoneBox);
@@ -401,6 +403,15 @@ namespace AIS.ProjectForms
             this.tabPage1.Text = "Аббитуриент";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(282, 109);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(40, 20);
+            this.textBox2.TabIndex = 27;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label13
             // 
@@ -453,12 +464,13 @@ namespace AIS.ProjectForms
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(203, 317);
+            this.button2.Location = new System.Drawing.Point(180, 174);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 23);
+            this.button2.Size = new System.Drawing.Size(137, 42);
             this.button2.TabIndex = 27;
-            this.button2.Text = "Добавить";
+            this.button2.Text = "Зарегестрироваться";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // backButton
             // 
@@ -648,5 +660,6 @@ namespace AIS.ProjectForms
         private System.Windows.Forms.ComboBox directionCBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox phoneBox;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

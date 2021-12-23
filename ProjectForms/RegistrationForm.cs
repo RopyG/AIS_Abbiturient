@@ -38,10 +38,11 @@ namespace AIS.ProjectForms
             InitializeComponent();
             dbc.Connect(this);
             new Prog_ob().ProgObSetup(traningProgCBox);
-
+            textBox2.MaxLength = 3;
             //TimeoutAsync(comboBox1, comboBox2, comboBox3);//setR.Correct(comboBox1, comboBox2, comboBox3);
             setR.SetYears(yearCBox);
-
+            loginTextBox.MaxLength = 20;
+            passwordTextBox.MaxLength = 20;
 
         }
 
@@ -72,7 +73,7 @@ namespace AIS.ProjectForms
             //label9.Text = comboBox3.SelectedIndex.ToString();
             try
             {
-                dbc.InsertAbbiturient(split.RegexSplit(nameCBox.Text)[0], split.RegexSplit(nameCBox.Text)[1], traningProgCBox.Text, formTrainingCBox.Text, baseCBox.Text, directionCBox.Text, phoneBox.Text);
+                dbc.InsertAbbiturient(split.RegexSplit(nameCBox.Text)[0], split.RegexSplit(nameCBox.Text)[1], traningProgCBox.Text, formTrainingCBox.Text, baseCBox.Text, directionCBox.Text, phoneBox.Text, textBox2.Text);
                 MessageBox.Show("Aббитуриент добавлен", "Aббитуриент добавлен", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             catch //(Exception)
@@ -128,6 +129,25 @@ namespace AIS.ProjectForms
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dbc.CreateAccount(loginTextBox.Text, passwordTextBox.Text);
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Курсовая;
 using AIS;
 using System.Windows.Forms;
 using System.IO;
@@ -36,8 +35,6 @@ namespace AIS
                 return trutime;
             }
         }
-
-
 
         public void CorrectSelectedIndex(ComboBox cb1, ComboBox cb2, ComboBox cb3, ComboBox cbDirection)
         {
@@ -96,24 +93,28 @@ namespace AIS
                     direction.Items.Clear();
                     direction.Enabled = true;
                     allDirection.Enabled = true;
+                    allDirection.Checked = false;
                     new Prog_ob.B().SetupB(direction);
                     break;
                 case 1:
                     direction.Items.Clear();
                     direction.Enabled = true;
                     allDirection.Enabled = true;
+                    allDirection.Checked = false;
                     new Prog_ob.M().SetupM(direction);
                     break;
                 case 2:
                     direction.Items.Clear();
                     direction.Enabled = true;
                     allDirection.Enabled = true;
+                    allDirection.Checked = false;
                     new Prog_ob.C().SetupC(direction);
                     break;
                 case 3:
                     direction.Items.Clear();
                     direction.Enabled = true;
                     allDirection.Enabled = true;
+                    allDirection.Checked = false;
                     new Prog_ob.A().SetupA(direction);
                     break;
                 default:
@@ -122,7 +123,7 @@ namespace AIS
 
         }
 
-        public void CorrectProgObheckedFor_SortForm(ComboBox progOb, ComboBox direction, CheckBox allProgOb, CheckBox allDirection)
+        public void CorrectProgObheckedFor_SortForm(ComboBox progOb, ComboBox direction, CheckBox allProgOb, CheckBox allDirection, CheckBox enrollment)
         {
             switch (allProgOb.Checked)
             {
@@ -132,26 +133,48 @@ namespace AIS
                     progOb.Enabled = false;
                     direction.Enabled = false;
                     allDirection.Enabled = false;
-
+                    enrollment.Checked = false;
+                    enrollment.Enabled = false;
                     break;
                 case false:
                     progOb.Enabled = true;
+                    enrollment.Enabled = true;
                     break;
                 default:
                     break;
             }
         }
-        public void CorrectDirectionCheckedFor_SortForm(ComboBox direction, CheckBox allDirection)
+        public void CorrectDirectionCheckedFor_SortForm(ComboBox direction, CheckBox allDirection, CheckBox enrollment)
         { 
             switch (allDirection.Checked)
             {
                 case true:
                     direction.Text = null;
                     direction.Enabled = false;
-
+                    enrollment.Checked = false;
+                    enrollment.Enabled = false;
                     break;
                 case false:
                     direction.Enabled = true;
+                    enrollment.Enabled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void CorrectEnrollment(CheckBox enrollment, TextBox abiturValue, Label abiturients)
+        {
+            switch (enrollment.Checked)
+            {
+                case true:
+                    abiturValue.Enabled = true;
+                    abiturients.Enabled = true;
+                    abiturValue.Text = Convert.ToString(30);
+                    break;
+                case false:
+                    abiturValue.Enabled = false;
+                    abiturients.Enabled = false;
+                    abiturValue.Clear();
                     break;
                 default:
                     break;

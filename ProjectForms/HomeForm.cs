@@ -60,5 +60,15 @@ namespace AIS
         {
             OpenChildForm(_form["DataBase"]);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

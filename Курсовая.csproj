@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbbiturientsDataSet1.Designer.cs">
+    <Compile Include="AbbiturientsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AbbiturientsDataSet.xsd</DependentUpon>
@@ -159,7 +159,7 @@
     </None>
     <None Include="AbbiturientsDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AbbiturientsDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AbbiturientsDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="AbbiturientsDataSet.xss">

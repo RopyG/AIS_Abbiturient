@@ -17,6 +17,6 @@ namespace AIS
         public string Base { get; set; }
         public string Direction { get; set; }
         public string PhoneNumber { get; set; }
-
+        public int Scores { get; set; }
     }
 }

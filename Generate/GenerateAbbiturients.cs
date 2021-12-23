@@ -141,8 +141,8 @@ namespace AIS
                 FormOfTraining = (string)fo.SelectedItem,
                 Base = (string)oo.SelectedItem,
                 Direction = prValue,
-                PhoneNumber = _phoneNumbers[_rnd.Next(0, _phoneNumbers.Count)]
-
+                PhoneNumber = _phoneNumbers[_rnd.Next(0, _phoneNumbers.Count)],
+                Scores = _rnd.Next(101)
             };
         }
     }

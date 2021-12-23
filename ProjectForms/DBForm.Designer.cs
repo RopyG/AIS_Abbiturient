@@ -30,6 +30,7 @@ namespace AIS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
             System.Windows.Forms.Label idLabel;
             System.Windows.Forms.Label firstNameLabel;
             System.Windows.Forms.Label lastNameLabel;
@@ -38,20 +39,8 @@ namespace AIS
             System.Windows.Forms.Label baseLabel;
             System.Windows.Forms.Label directionLabel;
             System.Windows.Forms.Label phoneNumberLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
-            this.abbiturientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.abbiturientDataSet1 = new AIS.AbbiturientsDataSet();
-            this.clientsTableAdapter = new AIS.AbbiturientsDataSetTableAdapters.ClientsTableAdapter();
+            System.Windows.Forms.Label scoresLabel;
             this.button1 = new System.Windows.Forms.Button();
-            this.tableAdapterManager = new AIS.AbbiturientsDataSetTableAdapters.TableAdapterManager();
-            this.idTextBox = new System.Windows.Forms.TextBox();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.lastNameTextBox = new System.Windows.Forms.TextBox();
-            this.trainingProgramTextBox = new System.Windows.Forms.TextBox();
-            this.formOfTrainingTextBox = new System.Windows.Forms.TextBox();
-            this.baseTextBox = new System.Windows.Forms.TextBox();
-            this.directionTextBox = new System.Windows.Forms.TextBox();
-            this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -63,18 +52,29 @@ namespace AIS
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.BindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.formOfTrainingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trainingProgramDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.trainingProgramTextBox = new System.Windows.Forms.TextBox();
+            this.formOfTrainingTextBox = new System.Windows.Forms.TextBox();
+            this.baseTextBox = new System.Windows.Forms.TextBox();
+            this.directionTextBox = new System.Windows.Forms.TextBox();
+            this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.scoresTextBox = new System.Windows.Forms.TextBox();
+            this.abbiturientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.abbiturientDataSet1 = new AIS.AbbiturientsDataSet();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trainingProgramDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.formOfTrainingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientsTableAdapter = new AIS.AbbiturientsDataSetTableAdapters.ClientsTableAdapter();
+            this.tableAdapterManager = new AIS.AbbiturientsDataSetTableAdapters.TableAdapterManager();
             idLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
@@ -83,179 +83,23 @@ namespace AIS
             baseLabel = new System.Windows.Forms.Label();
             directionLabel = new System.Windows.Forms.Label();
             phoneNumberLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.abbiturientsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.abbiturientDataSet1)).BeginInit();
+            scoresLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.abbiturientsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.abbiturientDataSet1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(12, 243);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(19, 13);
-            idLabel.TabIndex = 21;
-            idLabel.Text = "Id:";
-            // 
-            // firstNameLabel
-            // 
-            firstNameLabel.AutoSize = true;
-            firstNameLabel.Location = new System.Drawing.Point(12, 269);
-            firstNameLabel.Name = "firstNameLabel";
-            firstNameLabel.Size = new System.Drawing.Size(60, 13);
-            firstNameLabel.TabIndex = 23;
-            firstNameLabel.Text = "First Name:";
-            // 
-            // lastNameLabel
-            // 
-            lastNameLabel.AutoSize = true;
-            lastNameLabel.Location = new System.Drawing.Point(12, 295);
-            lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new System.Drawing.Size(61, 13);
-            lastNameLabel.TabIndex = 25;
-            lastNameLabel.Text = "Last Name:";
-            // 
-            // trainingProgramLabel
-            // 
-            trainingProgramLabel.AutoSize = true;
-            trainingProgramLabel.Location = new System.Drawing.Point(12, 321);
-            trainingProgramLabel.Name = "trainingProgramLabel";
-            trainingProgramLabel.Size = new System.Drawing.Size(90, 13);
-            trainingProgramLabel.TabIndex = 27;
-            trainingProgramLabel.Text = "Training Program:";
-            // 
-            // formOfTrainingLabel
-            // 
-            formOfTrainingLabel.AutoSize = true;
-            formOfTrainingLabel.Location = new System.Drawing.Point(225, 243);
-            formOfTrainingLabel.Name = "formOfTrainingLabel";
-            formOfTrainingLabel.Size = new System.Drawing.Size(88, 13);
-            formOfTrainingLabel.TabIndex = 29;
-            formOfTrainingLabel.Text = "Form Of Training:";
-            // 
-            // baseLabel
-            // 
-            baseLabel.AutoSize = true;
-            baseLabel.Location = new System.Drawing.Point(225, 269);
-            baseLabel.Name = "baseLabel";
-            baseLabel.Size = new System.Drawing.Size(34, 13);
-            baseLabel.TabIndex = 31;
-            baseLabel.Text = "Base:";
-            // 
-            // directionLabel
-            // 
-            directionLabel.AutoSize = true;
-            directionLabel.Location = new System.Drawing.Point(225, 295);
-            directionLabel.Name = "directionLabel";
-            directionLabel.Size = new System.Drawing.Size(52, 13);
-            directionLabel.TabIndex = 33;
-            directionLabel.Text = "Direction:";
-            // 
-            // phoneNumberLabel
-            // 
-            phoneNumberLabel.AutoSize = true;
-            phoneNumberLabel.Location = new System.Drawing.Point(225, 321);
-            phoneNumberLabel.Name = "phoneNumberLabel";
-            phoneNumberLabel.Size = new System.Drawing.Size(81, 13);
-            phoneNumberLabel.TabIndex = 35;
-            phoneNumberLabel.Text = "Phone Number:";
-            // 
-            // abbiturientsBindingSource
-            // 
-            this.abbiturientsBindingSource.DataMember = "Clients";
-            this.abbiturientsBindingSource.DataSource = this.abbiturientDataSet1;
-            // 
-            // abbiturientDataSet1
-            // 
-            this.abbiturientDataSet1.DataSetName = "AbbiturientDataSet";
-            this.abbiturientDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clientsTableAdapter
-            // 
-            this.clientsTableAdapter.ClearBeforeFill = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(484, 224);
+            this.button1.Location = new System.Drawing.Point(490, 266);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 62);
             this.button1.TabIndex = 20;
             this.button1.Text = "Вывести текстовый документ";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.AccountsTableAdapter = null;
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ClientsTableAdapter = this.clientsTableAdapter;
-            this.tableAdapterManager.UpdateOrder = AIS.AbbiturientsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // idTextBox
-            // 
-            this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Id", true));
-            this.idTextBox.Location = new System.Drawing.Point(108, 240);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(100, 20);
-            this.idTextBox.TabIndex = 22;
-            // 
-            // firstNameTextBox
-            // 
-            this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "FirstName", true));
-            this.firstNameTextBox.Location = new System.Drawing.Point(108, 266);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.firstNameTextBox.TabIndex = 24;
-            // 
-            // lastNameTextBox
-            // 
-            this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "LastName", true));
-            this.lastNameTextBox.Location = new System.Drawing.Point(108, 292);
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.lastNameTextBox.TabIndex = 26;
-            // 
-            // trainingProgramTextBox
-            // 
-            this.trainingProgramTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "TrainingProgram", true));
-            this.trainingProgramTextBox.Location = new System.Drawing.Point(108, 318);
-            this.trainingProgramTextBox.Name = "trainingProgramTextBox";
-            this.trainingProgramTextBox.Size = new System.Drawing.Size(100, 20);
-            this.trainingProgramTextBox.TabIndex = 28;
-            // 
-            // formOfTrainingTextBox
-            // 
-            this.formOfTrainingTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "FormOfTraining", true));
-            this.formOfTrainingTextBox.Location = new System.Drawing.Point(321, 240);
-            this.formOfTrainingTextBox.Name = "formOfTrainingTextBox";
-            this.formOfTrainingTextBox.Size = new System.Drawing.Size(100, 20);
-            this.formOfTrainingTextBox.TabIndex = 30;
-            // 
-            // baseTextBox
-            // 
-            this.baseTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Base", true));
-            this.baseTextBox.Location = new System.Drawing.Point(321, 266);
-            this.baseTextBox.Name = "baseTextBox";
-            this.baseTextBox.Size = new System.Drawing.Size(100, 20);
-            this.baseTextBox.TabIndex = 32;
-            // 
-            // directionTextBox
-            // 
-            this.directionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Direction", true));
-            this.directionTextBox.Location = new System.Drawing.Point(321, 292);
-            this.directionTextBox.Name = "directionTextBox";
-            this.directionTextBox.Size = new System.Drawing.Size(100, 20);
-            this.directionTextBox.TabIndex = 34;
-            // 
-            // phoneNumberTextBox
-            // 
-            this.phoneNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "PhoneNumber", true));
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(321, 318);
-            this.phoneNumberTextBox.Name = "phoneNumberTextBox";
-            this.phoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
-            this.phoneNumberTextBox.TabIndex = 36;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -345,26 +189,6 @@ namespace AIS
             this.BindingNavigatorSaveItem.Text = "BindingNavigatorSaveItem";
             this.BindingNavigatorSaveItem.Click += new System.EventHandler(this.BindingNavigatorSaveItem_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton1.Text = "AddButton";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton2.Text = "toolStripButton2";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
@@ -383,9 +207,7 @@ namespace AIS
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorDeleteItem,
-            this.BindingNavigatorSaveItem,
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this.BindingNavigatorSaveItem});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -396,55 +218,6 @@ namespace AIS
             this.bindingNavigator1.Size = new System.Drawing.Size(628, 31);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // phoneNumberDataGridViewTextBoxColumn
-            // 
-            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
-            // 
-            // directionDataGridViewTextBoxColumn
-            // 
-            this.directionDataGridViewTextBoxColumn.DataPropertyName = "Direction";
-            this.directionDataGridViewTextBoxColumn.HeaderText = "Direction";
-            this.directionDataGridViewTextBoxColumn.Name = "directionDataGridViewTextBoxColumn";
-            // 
-            // baseDataGridViewTextBoxColumn
-            // 
-            this.baseDataGridViewTextBoxColumn.DataPropertyName = "Base";
-            this.baseDataGridViewTextBoxColumn.HeaderText = "Base";
-            this.baseDataGridViewTextBoxColumn.Name = "baseDataGridViewTextBoxColumn";
-            // 
-            // formOfTrainingDataGridViewTextBoxColumn
-            // 
-            this.formOfTrainingDataGridViewTextBoxColumn.DataPropertyName = "FormOfTraining";
-            this.formOfTrainingDataGridViewTextBoxColumn.HeaderText = "FormOfTraining";
-            this.formOfTrainingDataGridViewTextBoxColumn.Name = "formOfTrainingDataGridViewTextBoxColumn";
-            // 
-            // trainingProgramDataGridViewTextBoxColumn
-            // 
-            this.trainingProgramDataGridViewTextBoxColumn.DataPropertyName = "TrainingProgram";
-            this.trainingProgramDataGridViewTextBoxColumn.HeaderText = "TrainingProgram";
-            this.trainingProgramDataGridViewTextBoxColumn.Name = "trainingProgramDataGridViewTextBoxColumn";
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dataGridView1
             // 
@@ -465,9 +238,231 @@ namespace AIS
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(421, 171);
+            this.dataGridView1.Size = new System.Drawing.Size(628, 171);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(23, 217);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(19, 13);
+            idLabel.TabIndex = 20;
+            idLabel.Text = "Id:";
+            // 
+            // idTextBox
+            // 
+            this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Id", true));
+            this.idTextBox.Location = new System.Drawing.Point(119, 214);
+            this.idTextBox.Name = "idTextBox";
+            this.idTextBox.Size = new System.Drawing.Size(100, 20);
+            this.idTextBox.TabIndex = 21;
+            // 
+            // firstNameLabel
+            // 
+            firstNameLabel.AutoSize = true;
+            firstNameLabel.Location = new System.Drawing.Point(23, 243);
+            firstNameLabel.Name = "firstNameLabel";
+            firstNameLabel.Size = new System.Drawing.Size(60, 13);
+            firstNameLabel.TabIndex = 22;
+            firstNameLabel.Text = "First Name:";
+            // 
+            // firstNameTextBox
+            // 
+            this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "FirstName", true));
+            this.firstNameTextBox.Location = new System.Drawing.Point(119, 240);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.firstNameTextBox.TabIndex = 23;
+            // 
+            // lastNameLabel
+            // 
+            lastNameLabel.AutoSize = true;
+            lastNameLabel.Location = new System.Drawing.Point(23, 269);
+            lastNameLabel.Name = "lastNameLabel";
+            lastNameLabel.Size = new System.Drawing.Size(61, 13);
+            lastNameLabel.TabIndex = 24;
+            lastNameLabel.Text = "Last Name:";
+            // 
+            // lastNameTextBox
+            // 
+            this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "LastName", true));
+            this.lastNameTextBox.Location = new System.Drawing.Point(119, 266);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.lastNameTextBox.TabIndex = 25;
+            // 
+            // trainingProgramLabel
+            // 
+            trainingProgramLabel.AutoSize = true;
+            trainingProgramLabel.Location = new System.Drawing.Point(23, 295);
+            trainingProgramLabel.Name = "trainingProgramLabel";
+            trainingProgramLabel.Size = new System.Drawing.Size(90, 13);
+            trainingProgramLabel.TabIndex = 26;
+            trainingProgramLabel.Text = "Training Program:";
+            // 
+            // trainingProgramTextBox
+            // 
+            this.trainingProgramTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "TrainingProgram", true));
+            this.trainingProgramTextBox.Location = new System.Drawing.Point(119, 292);
+            this.trainingProgramTextBox.Name = "trainingProgramTextBox";
+            this.trainingProgramTextBox.Size = new System.Drawing.Size(100, 20);
+            this.trainingProgramTextBox.TabIndex = 27;
+            // 
+            // formOfTrainingLabel
+            // 
+            formOfTrainingLabel.AutoSize = true;
+            formOfTrainingLabel.Location = new System.Drawing.Point(242, 217);
+            formOfTrainingLabel.Name = "formOfTrainingLabel";
+            formOfTrainingLabel.Size = new System.Drawing.Size(88, 13);
+            formOfTrainingLabel.TabIndex = 28;
+            formOfTrainingLabel.Text = "Form Of Training:";
+            // 
+            // formOfTrainingTextBox
+            // 
+            this.formOfTrainingTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "FormOfTraining", true));
+            this.formOfTrainingTextBox.Location = new System.Drawing.Point(338, 214);
+            this.formOfTrainingTextBox.Name = "formOfTrainingTextBox";
+            this.formOfTrainingTextBox.Size = new System.Drawing.Size(100, 20);
+            this.formOfTrainingTextBox.TabIndex = 29;
+            // 
+            // baseLabel
+            // 
+            baseLabel.AutoSize = true;
+            baseLabel.Location = new System.Drawing.Point(242, 243);
+            baseLabel.Name = "baseLabel";
+            baseLabel.Size = new System.Drawing.Size(34, 13);
+            baseLabel.TabIndex = 30;
+            baseLabel.Text = "Base:";
+            // 
+            // baseTextBox
+            // 
+            this.baseTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Base", true));
+            this.baseTextBox.Location = new System.Drawing.Point(338, 240);
+            this.baseTextBox.Name = "baseTextBox";
+            this.baseTextBox.Size = new System.Drawing.Size(100, 20);
+            this.baseTextBox.TabIndex = 31;
+            // 
+            // directionLabel
+            // 
+            directionLabel.AutoSize = true;
+            directionLabel.Location = new System.Drawing.Point(242, 269);
+            directionLabel.Name = "directionLabel";
+            directionLabel.Size = new System.Drawing.Size(52, 13);
+            directionLabel.TabIndex = 32;
+            directionLabel.Text = "Direction:";
+            // 
+            // directionTextBox
+            // 
+            this.directionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Direction", true));
+            this.directionTextBox.Location = new System.Drawing.Point(338, 266);
+            this.directionTextBox.Name = "directionTextBox";
+            this.directionTextBox.Size = new System.Drawing.Size(100, 20);
+            this.directionTextBox.TabIndex = 33;
+            // 
+            // phoneNumberLabel
+            // 
+            phoneNumberLabel.AutoSize = true;
+            phoneNumberLabel.Location = new System.Drawing.Point(242, 295);
+            phoneNumberLabel.Name = "phoneNumberLabel";
+            phoneNumberLabel.Size = new System.Drawing.Size(81, 13);
+            phoneNumberLabel.TabIndex = 34;
+            phoneNumberLabel.Text = "Phone Number:";
+            // 
+            // phoneNumberTextBox
+            // 
+            this.phoneNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "PhoneNumber", true));
+            this.phoneNumberTextBox.Location = new System.Drawing.Point(338, 292);
+            this.phoneNumberTextBox.Name = "phoneNumberTextBox";
+            this.phoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.phoneNumberTextBox.TabIndex = 35;
+            // 
+            // scoresLabel
+            // 
+            scoresLabel.AutoSize = true;
+            scoresLabel.Location = new System.Drawing.Point(242, 321);
+            scoresLabel.Name = "scoresLabel";
+            scoresLabel.Size = new System.Drawing.Size(43, 13);
+            scoresLabel.TabIndex = 36;
+            scoresLabel.Text = "Scores:";
+            // 
+            // scoresTextBox
+            // 
+            this.scoresTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.abbiturientsBindingSource, "Scores", true));
+            this.scoresTextBox.Location = new System.Drawing.Point(338, 318);
+            this.scoresTextBox.Name = "scoresTextBox";
+            this.scoresTextBox.Size = new System.Drawing.Size(46, 20);
+            this.scoresTextBox.TabIndex = 37;
+            // 
+            // abbiturientsBindingSource
+            // 
+            this.abbiturientsBindingSource.DataMember = "Clients";
+            this.abbiturientsBindingSource.DataSource = this.abbiturientDataSet1;
+            // 
+            // abbiturientDataSet1
+            // 
+            this.abbiturientDataSet1.DataSetName = "AbbiturientDataSet";
+            this.abbiturientDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            // 
+            // trainingProgramDataGridViewTextBoxColumn
+            // 
+            this.trainingProgramDataGridViewTextBoxColumn.DataPropertyName = "TrainingProgram";
+            this.trainingProgramDataGridViewTextBoxColumn.HeaderText = "TrainingProgram";
+            this.trainingProgramDataGridViewTextBoxColumn.Name = "trainingProgramDataGridViewTextBoxColumn";
+            // 
+            // formOfTrainingDataGridViewTextBoxColumn
+            // 
+            this.formOfTrainingDataGridViewTextBoxColumn.DataPropertyName = "FormOfTraining";
+            this.formOfTrainingDataGridViewTextBoxColumn.HeaderText = "FormOfTraining";
+            this.formOfTrainingDataGridViewTextBoxColumn.Name = "formOfTrainingDataGridViewTextBoxColumn";
+            // 
+            // baseDataGridViewTextBoxColumn
+            // 
+            this.baseDataGridViewTextBoxColumn.DataPropertyName = "Base";
+            this.baseDataGridViewTextBoxColumn.HeaderText = "Base";
+            this.baseDataGridViewTextBoxColumn.Name = "baseDataGridViewTextBoxColumn";
+            // 
+            // directionDataGridViewTextBoxColumn
+            // 
+            this.directionDataGridViewTextBoxColumn.DataPropertyName = "Direction";
+            this.directionDataGridViewTextBoxColumn.HeaderText = "Direction";
+            this.directionDataGridViewTextBoxColumn.Name = "directionDataGridViewTextBoxColumn";
+            // 
+            // phoneNumberDataGridViewTextBoxColumn
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            // 
+            // clientsTableAdapter
+            // 
+            this.clientsTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.AccountsTableAdapter = null;
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ClientsTableAdapter = this.clientsTableAdapter;
+            this.tableAdapterManager.UpdateOrder = AIS.AbbiturientsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // DBForm
             // 
@@ -490,18 +485,20 @@ namespace AIS
             this.Controls.Add(this.directionTextBox);
             this.Controls.Add(phoneNumberLabel);
             this.Controls.Add(this.phoneNumberTextBox);
+            this.Controls.Add(scoresLabel);
+            this.Controls.Add(this.scoresTextBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "DBForm";
             this.Text = "DBForm";
             this.Load += new System.EventHandler(this.DBForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.abbiturientsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.abbiturientDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.abbiturientsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.abbiturientDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,14 +510,6 @@ namespace AIS
         public AIS.AbbiturientsDataSetTableAdapters.ClientsTableAdapter clientsTableAdapter;
         private System.Windows.Forms.Button button1;
         private AbbiturientsDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.TextBox firstNameTextBox;
-        private System.Windows.Forms.TextBox lastNameTextBox;
-        private System.Windows.Forms.TextBox trainingProgramTextBox;
-        private System.Windows.Forms.TextBox formOfTrainingTextBox;
-        private System.Windows.Forms.TextBox baseTextBox;
-        private System.Windows.Forms.TextBox directionTextBox;
-        private System.Windows.Forms.TextBox phoneNumberTextBox;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
@@ -532,8 +521,6 @@ namespace AIS
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton BindingNavigatorSaveItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn directionDataGridViewTextBoxColumn;
@@ -544,5 +531,14 @@ namespace AIS
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox idTextBox;
+        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.TextBox trainingProgramTextBox;
+        private System.Windows.Forms.TextBox formOfTrainingTextBox;
+        private System.Windows.Forms.TextBox baseTextBox;
+        private System.Windows.Forms.TextBox directionTextBox;
+        private System.Windows.Forms.TextBox phoneNumberTextBox;
+        private System.Windows.Forms.TextBox scoresTextBox;
     }
 }

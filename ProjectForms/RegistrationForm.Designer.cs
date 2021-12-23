@@ -287,7 +287,6 @@ namespace AIS.ProjectForms
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 18;
             this.label5.Text = "Баллы:";
-            this.label5.Visible = false;
             // 
             // label6
             // 
